@@ -18,12 +18,12 @@ class CourseFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'category' => randomElements(['easy', 'medium', 'hard']),
+            'category' => fake()->randomElement(['easy', 'medium', 'hard']),
             'active' => fake()->boolean(),
-            'start_date' => now(),
-            'end_date' => now(),
+            'start_date' => fake()->date('Y-m-d'),
+            'end_date' => fake()->date('Y-m-d'),
             'vacancies' => fake()->randomDigit(),
-            'price' => randomFloat(2, 1, 100),
+            'price' => fake()->randomFloat(2, 1, 100),
         ];
     }
 }
