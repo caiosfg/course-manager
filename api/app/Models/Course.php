@@ -9,4 +9,14 @@ class Course extends Model
 {
     /** @use HasFactory<\Database\Factories\CourseFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'category',
+        'active',
+        'start_date',
+        'end_date',
+        'vacancies',
+        'price'
+    ];
 }
