@@ -31,4 +31,18 @@ class StoreCourseRequest extends FormRequest
             'price' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'O campo name é obrigatório',
+            'category.required' => 'O campo category é obrigatório',
+            'active.required' => 'O campo active é obrigatório',
+            'start_date.required' => 'O campo start_date é obrigatório',
+            'end_date.required' => 'O campo end_date é obrigatório',
+            'vacancies.required' => 'O campo vacancies é obrigatório',
+            'price.required' => 'O campo price é obrigatório',
+        ];
+    }
+
 }

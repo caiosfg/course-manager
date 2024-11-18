@@ -70,19 +70,43 @@ class CourseController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Course $course)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
+     */
+    /**
+     * @OA\Schema(
+     *    schema="UpdateCourseRequest",
+     *    type="object",
+     *    required={"name", "category", "active", "start_date", "end_date", "vacancies",  "price"},
+     *    @OA\Property(property="name", type="string"),
+     *    @OA\Property(property="category", type="string", example="easy"),
+     *    @OA\Property(property="active", type="boolean"),
+     *    @OA\Property(property="start_date", type="string", example="2021-01-01"),
+     *    @OA\Property(property="end_date", type="string", example="2021-01-01"),
+     *    @OA\Property(property="vacancies", type="integer"),
+     *    @OA\Property(property="price", type="float", example="123.0"),
+     * )
+     * @OA\Put(
+     *   path="/api/v1/courses/{id}",
+     *   summary="Update a course",
+     *   tags={"courses"},
+     *   @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     required=true,
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *   ),
+     *   @OA\RequestBody(@OA\JsonContent(ref="#/components/schemas/Course")),
+     *   @OA\Response(response=200, description="Successful Operation"),
+     *   @OA\Response(response=400, description="invalid data", @OA\JsonContent())
+     * )
      */
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        //
+        $course->update($request->validated());
+
+        return CourseResource::make($course);
     }
 
     /**

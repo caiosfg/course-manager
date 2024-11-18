@@ -57,11 +57,92 @@
                     }
                 ]
             }
+        },
+        "/api/v1/courses/{id}": {
+            "put": {
+                "tags": [
+                    "courses"
+                ],
+                "summary": "Update a course",
+                "operationId": "01b1c78cfc73dd07b3f8db3198cccaf8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Course"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Operation"
+                    },
+                    "400": {
+                        "description": "invalid data",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
         "schemas": {
             "CouponsCreatePost": {
+                "required": [
+                    "name",
+                    "category",
+                    "active",
+                    "start_date",
+                    "end_date",
+                    "vacancies",
+                    "price"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string",
+                        "example": "easy"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "example": "2021-01-01"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "example": "2021-01-01"
+                    },
+                    "vacancies": {
+                        "type": "integer"
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "float",
+                        "example": "123.0"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateCourseRequest": {
                 "required": [
                     "name",
                     "category",
