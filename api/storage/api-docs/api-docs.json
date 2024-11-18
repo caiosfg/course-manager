@@ -1,0 +1,151 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Course Manager",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/v1/courses": {
+            "get": {
+                "tags": [
+                    "courses"
+                ],
+                "summary": "Get courses",
+                "description": "Get all courses",
+                "operationId": "3522f88b734e2061541a8dbd0b6be53c",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Course"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "security": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "courses"
+                ],
+                "summary": "Create a new course",
+                "operationId": "92ce73d19fae55890bc7e00c723b7557",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Course"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Operation"
+                    }
+                },
+                "security": [
+                    {
+                        "security": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CouponsCreatePost": {
+                "required": [
+                    "name",
+                    "category",
+                    "active",
+                    "start_date",
+                    "end_date",
+                    "vacancies",
+                    "price"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string",
+                        "example": "easy"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "example": "2021-01-01"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "example": "2021-01-01"
+                    },
+                    "vacancies": {
+                        "type": "integer"
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "float",
+                        "example": "123.0"
+                    }
+                },
+                "type": "object"
+            },
+            "Course": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "English"
+                    },
+                    "category": {
+                        "type": "string",
+                        "example": "EASY"
+                    },
+                    "active": {
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2018-05-08"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2018-05-08"
+                    },
+                    "vacancies": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "float",
+                        "example": "123.0"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "CourseResource"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "courses",
+            "description": "courses"
+        }
+    ]
+}

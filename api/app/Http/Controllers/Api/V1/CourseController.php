@@ -14,6 +14,16 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      */
+    /**
+     * @OA\Get(
+     *     path="/api/v1/courses",
+     *     tags={"courses"},
+     *     summary="Get courses",
+     *     description="Get all courses",
+     *     @OA\Response(response=200, description="successful operation", @OA\JsonContent(ref="#/components/schemas/Course")),
+     *     security={{ "security": {} }}
+     * )
+     */
     public function index()
     {
         return CourseResource::collection(Course::all());
@@ -21,6 +31,28 @@ class CourseController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     */
+    /**
+     * @OA\Schema(
+     *    schema="CouponsCreatePost",
+     *    type="object",
+     *    required={"name", "category", "active", "start_date", "end_date", "vacancies",  "price"},
+     *    @OA\Property(property="name", type="string"),
+     *    @OA\Property(property="category", type="string", example="easy"),
+     *    @OA\Property(property="active", type="boolean"),
+     *    @OA\Property(property="start_date", type="string", example="2021-01-01"),
+     *    @OA\Property(property="end_date", type="string", example="2021-01-01"),
+     *    @OA\Property(property="vacancies", type="integer"),
+     *    @OA\Property(property="price", type="float", example="123.0"),
+     * )
+     * @OA\Post(
+     *   path="/api/v1/courses",
+     *   summary="Create a new course",
+     *   tags={"courses"},
+     *   @OA\RequestBody(@OA\JsonContent(ref="#/components/schemas/Course")),
+     *   @OA\Response(response=200, description="Successful Operation"),
+     *   security={{ "security": {} }},
+     * )
      */
     public function store(StoreCourseRequest $request)
     {

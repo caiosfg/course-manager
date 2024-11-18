@@ -19,3 +19,8 @@ php artisan key:generate
 php artisan migrate
 
 php artisan db:seed
+
+## Documentando com Swagger
+http://localhost:8080/api/docs
+
+php artisan l5-swagger:generate
