@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
+use App\Http\Resources\CourseResource;
 
 
 class CourseController extends Controller
@@ -15,7 +16,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return Course::all();
+        return CourseResource::collection(Course::all());
     }
 
     /**
@@ -39,7 +40,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        return CourseResource::make($course);
     }
 
     /**
