@@ -10,7 +10,7 @@
                 "tags": [
                     "courses"
                 ],
-                "summary": "Get courses",
+                "summary": "Get all courses",
                 "description": "Get all courses",
                 "operationId": "3522f88b734e2061541a8dbd0b6be53c",
                 "responses": {
@@ -24,12 +24,7 @@
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "security": []
-                    }
-                ]
+                }
             },
             "post": {
                 "tags": [
@@ -50,15 +45,32 @@
                     "200": {
                         "description": "Successful Operation"
                     }
-                },
-                "security": [
-                    {
-                        "security": []
-                    }
-                ]
+                }
             }
         },
         "/api/v1/courses/{id}": {
+            "get": {
+                "tags": [
+                    "courses"
+                ],
+                "summary": "Get a specified course",
+                "operationId": "0cc958d4649cdf4fa331958a855c4be4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Operation"
+                    }
+                }
+            },
             "put": {
                 "tags": [
                     "courses"
@@ -97,12 +109,34 @@
                         }
                     }
                 }
+            },
+            "delete": {
+                "tags": [
+                    "courses"
+                ],
+                "summary": "Delete a course",
+                "operationId": "6d62620e5df273a1f962ed6eee294dc1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Operation"
+                    }
+                }
             }
         }
     },
     "components": {
         "schemas": {
-            "CouponsCreatePost": {
+            "StoreCourseRequest": {
                 "required": [
                     "name",
                     "category",

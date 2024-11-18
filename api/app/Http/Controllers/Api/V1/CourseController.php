@@ -18,10 +18,9 @@ class CourseController extends Controller
      * @OA\Get(
      *     path="/api/v1/courses",
      *     tags={"courses"},
-     *     summary="Get courses",
+     *     summary="Get all courses",
      *     description="Get all courses",
-     *     @OA\Response(response=200, description="successful operation", @OA\JsonContent(ref="#/components/schemas/Course")),
-     *     security={{ "security": {} }}
+     *     @OA\Response(response=200, description="successful operation", @OA\JsonContent(ref="#/components/schemas/Course"))
      * )
      */
     public function index()
@@ -34,7 +33,7 @@ class CourseController extends Controller
      */
     /**
      * @OA\Schema(
-     *    schema="CouponsCreatePost",
+     *    schema="StoreCourseRequest",
      *    type="object",
      *    required={"name", "category", "active", "start_date", "end_date", "vacancies",  "price"},
      *    @OA\Property(property="name", type="string"),
@@ -50,8 +49,7 @@ class CourseController extends Controller
      *   summary="Create a new course",
      *   tags={"courses"},
      *   @OA\RequestBody(@OA\JsonContent(ref="#/components/schemas/Course")),
-     *   @OA\Response(response=200, description="Successful Operation"),
-     *   security={{ "security": {} }},
+     *   @OA\Response(response=200, description="Successful Operation")
      * )
      */
     public function store(StoreCourseRequest $request)
@@ -63,6 +61,22 @@ class CourseController extends Controller
 
     /**
      * Display the specified resource.
+     */
+    /**
+     * @OA\Get(
+     *   path="/api/v1/courses/{id}",
+     *   summary="Get a specified course",
+     *   tags={"courses"},
+     *   @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     required=true,
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *   ),
+     *   @OA\Response(response=200, description="Successful Operation")
+     * )
      */
     public function show(Course $course)
     {
@@ -112,8 +126,26 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    /**
+     * @OA\Delete(
+     *   path="/api/v1/courses/{id}",
+     *   summary="Delete a course",
+     *   tags={"courses"},
+     *   @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     required=true,
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *   ),
+     *   @OA\Response(response=200, description="Successful Operation")
+     * )
+     */
     public function destroy(Course $course)
     {
-        //
+        $course->delete();
+
+        return response()->noContent();
     }
 }
